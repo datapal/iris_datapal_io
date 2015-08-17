@@ -3,7 +3,7 @@
     "scores": [
         {
             "name": "Accuracy",
-            "value": 0.32
+            "value": 0.3333333333333333
         },
         {
             "class_wise": {
@@ -14,13 +14,13 @@
                 ],
                 "values": [
                     0.4000000000000001,
-                    0.17821782178217824,
-                    0.3838383838383838
+                    0.1818181818181818,
+                    0.41584158415841577
                 ]
             },
             "name": "F1 score",
             "summary_name": "Weighted average F1 score",
-            "summary_value": 0.3206854018735207
+            "summary_value": 0.3325532553255326
         },
         {
             "class_wise": {
@@ -31,13 +31,13 @@
                 ],
                 "values": [
                     0.4,
-                    0.17647058823529413,
-                    0.3877551020408163
+                    0.1836734693877551,
+                    0.4117647058823529
                 ]
             },
             "name": "Precision",
             "summary_name": "Weighted average precision score",
-            "summary_value": 0.32140856342537016
+            "summary_value": 0.331812725090036
         },
         {
             "class_wise": {
@@ -48,13 +48,13 @@
                 ],
                 "values": [
                     0.4,
-                    0.17647058823529413,
-                    0.3877551020408163
+                    0.1836734693877551,
+                    0.4117647058823529
                 ]
             },
             "name": "Recall",
             "summary_name": "Weighted average recall score",
-            "summary_value": 0.32
+            "summary_value": 0.3333333333333333
         }
     ]
 }
