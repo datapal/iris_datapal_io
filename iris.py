@@ -13,9 +13,7 @@ class IrisModel:
     def datapalio_interface(self, **kwargs):
         
         """
-        This method is used by DataPal.io to interact with the model. It receives the name of 
-        the pipe selected by the user and the input data. 
-        It returns a dictionary that contains the values of the predictions
+        This method is used by DataPal.io to interact with the model.
         
         Inputs:
                 
@@ -23,31 +21,38 @@ class IrisModel:
         
         - input_data (dictionary): dictionary that contains the input data. The keys of the dictionary 
         correspond to the names of the inputs specified in models_definition.json for the selected pipe.
-        For each key we have an associated value: input value for variables and filename for files. 
+        Each key has an associated value. For the input variables the associated value is the value
+        of the variable, whereas for the input files the associated value is its filename. 
         
-        - input_files_dir (string): Relative path of the directory where the input files are stored.
+        - input_files_dir (string): Relative path of the directory where the input files are stored
+        (the algorithm has to read the input files from there).
 
-        - output_files_dir (string): Relative path of the directory where the output files must be stored.
+        - output_files_dir (string): Relative path of the directory where the output files must be stored
+        (the algorithm must store the output files in there).
         
         Outputs:
         
         - output_data (dictionary): dictionary that contains the output data. The keys of the dictionary 
         correspond to the names of the outputs specified in models_definition.json for the selected pipe. 
-        For each key we have an associated value: input value for variables and filename for files.
-        
+        Each key has an associated value. For the output variables the associated value is the value
+        of the variable, whereas for the output files the associated value is its filename.  
+
         """
         
+        pipe_id = kwargs['pipe_id']
         input_data = kwargs['input_data']
         input_files_dir = kwargs['input_files_dir']
         output_files_dir = kwargs['output_files_dir']
-        pipe_id = kwargs['pipe_id']
+        
+        output_data = self.train_or_predict(pipe_id, input_data, input_files_dir, output_files_dir)
+        
+        return output_data
+        
+    
+    def train_or_predict(self, pipe_id, input_data, input_files_dir, output_files_dir):
         
         # pipes for prediction
         if pipe_id in [0,1]:
-            
-            pipe_id = kwargs['pipe_id']
-            input_data = kwargs['input_data']
-            input_files_dir = kwargs['input_files_dir']
 
             # load data
             if pipe_id == 0:
@@ -73,7 +78,6 @@ class IrisModel:
 
             elif pipe_id == 1:
                 # save output in csv file and return it
-                output_files_dir = kwargs['output_files_dir']
                 filename = 'predictions.csv'
                 filepath = os.path.join(output_files_dir, filename)
                 df = pd.DataFrame(data=data, columns=self.feature_names)
